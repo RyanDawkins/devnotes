@@ -1,5 +1,5 @@
 (function appJsIife(global){
 
-  angular.module('app', []);
+  angular.module('app', ['ngRoute']);
 
 })(window);
