@@ -7,8 +7,13 @@
   function config($routeProvider, $locationProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: '/app/partials/index.html',
-        controller: 'indexController',
+        templateUrl: '/app/home/home.html',
+        controller: 'homeController',
+        controllerAs: 'vm'
+      })
+      .when('/signup', {
+        templateUrl: '/app/signup/signup.html',
+        controller: 'signupController',
         controllerAs: 'vm'
       });
   }

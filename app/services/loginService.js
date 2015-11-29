@@ -10,7 +10,7 @@
   }
 
   loginService.prototype.isLoggedIn = function isLoggedIn() {
-    return localStorage.getItem(loginToken);
+    return !!Parse.User.current();
   }
 
 })(window);
