@@ -8,6 +8,7 @@
   function homeController() {
 
     var vm = this;
+    vm.notes = [];
 
   }
 
