@@ -9,4 +9,8 @@
     return Parse.User.current().get("name");
   }
 
+  userService.prototype.getEmail = function getEmail() {
+    return Parse.User.current().get("email");
+  }
+
 })(window);
