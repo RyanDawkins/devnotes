@@ -15,7 +15,12 @@
         templateUrl: '/app/signup/signup.html',
         controller: 'signupController',
         controllerAs: 'vm'
-      });
+      })
+      .when('/signin', {
+        templateUrl: '/app/signin/signin.html',
+        controller: 'signinController',
+        controllerAs: 'vm'
+      })
   }
 
 })(window);

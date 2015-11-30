@@ -1,13 +1,9 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-4 col-lg-offset-4 col-md-offset-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
-      <h1>Create Account</h1>
+      <h1>Sign In</h1>
       <hr />
-      <form ng-submit="vm.signup()">
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input ng-model="vm.name" type="text" class="form-control" id="name" placeholder="John Doe" required>
-        </div>
+      <form ng-submit="vm.signin()">
         <div class="form-group">
           <label for="email">Email address</label>
           <input ng-model="vm.email" type="email" class="form-control" id="email" placeholder="john.doe@gmail.com" required>
@@ -16,10 +12,8 @@
           <label for="password">Password</label>
           <input ng-model="vm.password" type="password" class="form-control" id="password" placeholder="secretP@$$w0rd" required>
         </div>
-        <button type="submit" class="btn btn-success">
-          <i class="fa fa-plus"></i> Create Account
-        </button>
-        <a class="btn btn-default" href="/#/signin">Back to Sign-in</a>
+        <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> Sign-in</button>
+        <a class="btn btn-success" href="/#/signup">New User?</a>
       </form>
     </div>
   </div>

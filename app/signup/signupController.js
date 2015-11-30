@@ -2,17 +2,32 @@
 
   angular.module('app').controller('signupController', signupController);
 
-  function signupController() {
+  signupController.$inject = ['signupFactory', '$location'];
+
+  function signupController(signupFactory, $location) {
 
     var vm = this;
+    vm.name = "";
     vm.email = "";
     vm.password = "";
 
     vm.signup = signup;
 
     function signup() {
-      console.debug(vm.email);
-      console.debug(vm.password);
+
+      signupFactory.signup(vm.name, vm.email, vm.password, function signupCallback(user, error){
+
+        if(error) {
+          console.error(error);
+          return;
+        }
+
+        console.debug("signup was a success", user);
+
+        $location.path('/').replace();
+
+      });
+
     }
 
   }

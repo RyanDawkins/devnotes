@@ -26,7 +26,7 @@
   </head>
   <body ng-app="app">
 
-    <nav class="navbar navbar-inverse">
+    <nav ng-controller="navbarController as navVm" class="navbar navbar-inverse">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -44,6 +44,9 @@
           <ul class="nav navbar-nav">
           </ul>
           <ul class="nav navbar-nav navbar-right">
+            <li ng-show="navVm.isLoggedIn()">
+              <a ng-click="navVm.logout()"><i class="fa fa-sign-out"></i> Logout</a>
+            </li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -73,6 +76,8 @@
     <!-- app services -->
     <script src="app/services/loginService.js"></script>
 
+    <script src="app/navbarController.js"></script>
+
     <!-- home -->
     <script src="app/home/homeController.js"></script>
 
@@ -80,6 +85,7 @@
     <script src="app/signup/signupController.js"></script>
     <script src="app/signup/signupFactory.js"></script>
 
+    <script src="app/signin/signinController.js"></script>
 
   </body>
 </html>
