@@ -1,3 +1,13 @@
 nav.navbar {
   border-radius: 0;
 }
+
+ul.notes > li.note {
+  border: 1px #ededed solid;
+  padding: 5px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+ul.notes > li.note:hover {
+  background-color: #ededed;
+}

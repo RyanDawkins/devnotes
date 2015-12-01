@@ -7,8 +7,9 @@
       <h4>Your notes</h4>
       <hr>
 
-      <ul class="list-unstyled">
-        <li ng-repeat="note in vm.notes">{{note.title}}</li>
+      <ul class="list-unstyled notes">
+        <li class="note" ng-repeat="note in vm.notes" ng-click="vm.startEditing(note)">{{note.title}}</li>
+        <li class="note" ng-click="vm.createNote()"><i class="fa fa-plus"></i> Create Note</li>
       </ul>
     </div>
 
@@ -16,12 +17,7 @@
 
       <input ng-model="vm.currentTitle" placeholder="Title" type="text" class="form-control">
       <br>
-      <a class="btn btn-default" ng-click="vm.test()">Print Contents</a>
       <textarea ng-model="vm.content" id="md-content"></textarea>
-      <br>
-      <a class="btn btn-default" ng-click="vm.test()">Print Contents</a>
-
     </div>
-
   </div>
 </div>
