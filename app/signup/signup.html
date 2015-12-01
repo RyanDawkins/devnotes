@@ -17,7 +17,7 @@
           <input ng-model="vm.password" type="password" class="form-control" id="password" placeholder="secretP@$$w0rd" required>
         </div>
         <button type="submit" class="btn btn-success">
-          <i class="fa fa-plus"></i> Create Account
+          <i class="fa fa-plus"></i> Create Account <i ng-show="vm.showSpinner" class="fa fa-spinner fa-spin"></i>
         </button>
         <a class="btn btn-default" href="/#/signin">Back to Sign-in</a>
       </form>

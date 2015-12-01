@@ -4,27 +4,30 @@
 
   var loginToken = "devNotesLoginToken";
 
-  loginService.$inject = [];
+  loginService.$inject = ['firebaseRef'];
 
-  function loginService() {
+  var self;
+
+  function loginService(firebaseRef) {
+    self = this;
+    this.firebaseRef = firebaseRef;
   }
 
   loginService.prototype.isLoggedIn = function isLoggedIn() {
-    return !!Parse.User.current();
+    return !!this.firebaseRef.getAuth();
   }
 
   loginService.prototype.logout = function logout() {
-    Parse.User.logOut();
+    this.firebaseRef.unauth();
   }
 
   loginService.prototype.login = function login(email, password, callback) {
-    Parse.User.logIn(email, password, {
-      success: function successCallback(user) {
-        callback(user);
-      },
-      error: function errorCallback(user, error) {
-        callback(user, error);
-      }
+    this.firebaseRef.authWithPassword({
+      email: email,
+      password: password
+    }, function authHandler(error, authData){
+      console.debug(self.firebaseRef.getAuth());
+      callback(authData, error);
     });
   }
 

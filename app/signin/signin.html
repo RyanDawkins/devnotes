@@ -12,7 +12,7 @@
           <label for="password">Password</label>
           <input ng-model="vm.password" type="password" class="form-control" id="password" placeholder="secretP@$$w0rd" required>
         </div>
-        <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> Sign-in</button>
+        <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> Sign-in <i ng-show="vm.showSpinner" class="fa fa-spinner fa-spin"></i></button>
         <a class="btn btn-success" href="/#/signup">New User?</a>
       </form>
     </div>

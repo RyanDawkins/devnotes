@@ -3,9 +3,9 @@
 
   angular.module('app').controller('homeController', homeController);
 
-  homeController.$inject = [];
+  homeController.$inject = ['$scope'];
 
-  function homeController() {
+  function homeController($scope) {
 
     var vm = this;
     vm.currentTitle = "";
@@ -20,9 +20,15 @@
       theme: "default"
     });
 
+    editor.on('change', function editorOnChange(cm, changedObject){
+    });
+
+    function getContent() {
+      return editor.getValue();
+    }
+
     function test() {
-      var text = editor.getValue();
-      
+      console.debug(getContent());
     }
   }
 
