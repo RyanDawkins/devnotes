@@ -1,5 +1,7 @@
 <div class="container">
   <div class="row">
+
+    <!-- Notes title pane -->
     <div class="col-lg-2 col-md-2 col-sm-2">
 
       <h4>Your notes</h4>
@@ -8,7 +10,18 @@
       <ul class="list-unstyled">
         <li ng-repeat="note in vm.notes">{{note.title}}</li>
       </ul>
+    </div>
+
+    <div class="col-lg-5 col-md-5 col-sm-5">
+
+      <input ng-model="vm.currentTitle" placeholder="Title" type="text" class="form-control">
+      <br>
+      <a class="btn btn-default" ng-click="vm.test()">Print Contents</a>
+      <textarea ng-model="vm.content" id="md-content"></textarea>
+      <br>
+      <a class="btn btn-default" ng-click="vm.test()">Print Contents</a>
 
     </div>
+
   </div>
 </div>
