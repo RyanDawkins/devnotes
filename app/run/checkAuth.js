@@ -6,6 +6,11 @@
 
   function checkAuth(loginService, $location, $rootScope) {
 
+    if(loginService.isLoggedIn()) {
+      // Load user info...
+      // This will pull from /users/{uid}
+    }
+
     $rootScope.$on('$routeChangeStart', function(next, current) {
       authRedirect();
     });
