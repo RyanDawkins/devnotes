@@ -9,19 +9,16 @@
 
     var vm = this;
     vm.currentNote = null;
+    vm.text = "";
     vm.currentTitle = "";
     vm.notes = [];
     vm.startEditing = startEditing;
     vm.createNote = createNote;
 
-    var editor = CodeMirror.fromTextArea(document.getElementById("md-content"), {
-      mode: 'gfm',
+    vm.codeMirrorOptions = {
       lineNumbers: true,
-      theme: "default"
-    });
-
-    editor.on('change', function editorOnChange(cm, changedObject){
-    });
+      lineWrapping: true,
+    };
 
     init();
 
@@ -41,20 +38,16 @@
       });
     }
 
-    function getContent() {
-      return editor.getValue();
-    }
-
     function startEditing(note) {
       vm.currentNote = note;
+      vm.text = note.text;
       vm.currentTitle = note.title;
-      editor.setValue(note.text);
     }
 
     function createNote() {
       vm.currentNote = null;
+      vm.text = "";
       vm.currentTitle = "";
-      editor.setValue("");
     }
 
   }

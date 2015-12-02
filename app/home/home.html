@@ -17,7 +17,14 @@
 
       <input ng-model="vm.currentTitle" placeholder="Title" type="text" class="form-control">
       <br>
-      <textarea ng-model="vm.content" id="md-content"></textarea>
+      <ui-codemirror ng-model="vm.text" ui-codemirror-opts="vm.codeMirrorOptions"></ui-codemirror>
     </div>
+
+    <div class="col-lg-5 col-md-5 col-sm-5">
+
+      <div marked="vm.text"></div>
+
+    </div>
+
   </div>
 </div>
