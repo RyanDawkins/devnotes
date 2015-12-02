@@ -15,14 +15,14 @@
 
     <div class="col-lg-5 col-md-5 col-sm-5">
 
-      <input ng-model="vm.currentTitle" placeholder="Title" type="text" class="form-control">
+      <input ng-model="vm.currentNote.title" placeholder="Title" type="text" class="form-control">
       <br>
-      <ui-codemirror ng-model="vm.text" ui-codemirror-opts="vm.codeMirrorOptions"></ui-codemirror>
+      <ui-codemirror ng-model="vm.currentNote.text" ui-codemirror-opts="vm.codeMirrorOptions"></ui-codemirror>
     </div>
 
     <div class="col-lg-5 col-md-5 col-sm-5">
 
-      <div marked="vm.text"></div>
+      <div marked="vm.currentNote.text"></div>
 
     </div>
 

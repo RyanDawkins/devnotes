@@ -8,9 +8,10 @@
   function homeController($scope, noteService) {
 
     var vm = this;
-    vm.currentNote = null;
-    vm.text = "";
-    vm.currentTitle = "";
+    vm.currentNote = {
+      text: "",
+      title: "",
+    };
     vm.notes = [];
     vm.startEditing = startEditing;
     vm.createNote = createNote;
@@ -40,14 +41,13 @@
 
     function startEditing(note) {
       vm.currentNote = note;
-      vm.text = note.text;
-      vm.currentTitle = note.title;
     }
 
     function createNote() {
-      vm.currentNote = null;
-      vm.text = "";
-      vm.currentTitle = "";
+      vm.currentNote = {
+        text: "",
+        title: ""
+      }
     }
 
   }
