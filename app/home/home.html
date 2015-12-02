@@ -17,6 +17,11 @@
 
       <input ng-model="vm.currentNote.title" placeholder="Title" type="text" class="form-control">
       <br>
+      <div class="pull-right">
+        <a class="btn btn-xs btn-primary"><i class="fa fa-save"></i></a>
+        <a class="btn btn-xs btn-info"><i class="fa fa-share"></i></a>
+        <a class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
+      </div>
       <ui-codemirror ng-model="vm.currentNote.text" ui-codemirror-opts="vm.codeMirrorOptions"></ui-codemirror>
     </div>
 
