@@ -15,6 +15,9 @@
     vm.notes = [];
     vm.startEditing = startEditing;
     vm.createNote = createNote;
+    vm.saveNote = saveNote;
+    vm.shareNote = shareNote;
+    vm.deleteNote = deleteNote;
 
     vm.codeMirrorOptions = {
       lineNumbers: true,
@@ -48,6 +51,18 @@
         text: "",
         title: ""
       }
+    }
+
+    function saveNote() {
+
+    }
+
+    function shareNote() {
+      
+    }
+
+    function deleteNote() {
+
     }
 
   }
