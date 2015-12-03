@@ -2,9 +2,9 @@
 
   angular.module('app').controller('navbarController', navbarController);
 
-  navbarController.$inject = ['loginService', '$location', 'userService'];
+  navbarController.$inject = ['loginService', '$location', 'userService', '$rootScope'];
 
-  function navbarController(loginService, $location, userService) {
+  function navbarController(loginService, $location, userService, $rootScope) {
 
     var vm = this;
 
@@ -22,11 +22,16 @@
     }
 
     function getName() {
-      if(isLoggedIn()) {
-        return userService.getName();
-      }
-      return "";
+      return userService.getName();
     }
+
+    $rootScope.$on('$routeChangeStart', function(next, current) {
+      if(loginService.isLoggedIn()){
+        userService.loadUser(function loadUserCallback(user, error){
+          userService.setName(user.name);
+        });
+      }
+    });
 
   }
 

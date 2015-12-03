@@ -25,4 +25,23 @@
     return this.name;
   }
 
+  userService.prototype.loadUser = function loadUser(callback) {
+    var user_uid = this.firebaseRef.getAuth().uid;
+    var userRef = this.firebaseRef.child('users').child(user_uid);
+
+    userRef.on('value', function onValueCallback(snapshot){
+
+      // On success
+      callback(snapshot.val());
+
+    }, function errorCallback(error){
+
+      // On success
+      console.debug("read failed");
+      console.error(error);
+      callback(null, error);
+    });
+
+  }
+
 })(window);
