@@ -21,6 +21,12 @@
         controller: 'signinController',
         controllerAs: 'vm'
       })
+      .when('/404', {
+        templateUrl: '/app/notFound/notFound.html'
+      })
+      .otherwise({
+        redirectTo: '/404'
+      });
   }
 
 })(window);

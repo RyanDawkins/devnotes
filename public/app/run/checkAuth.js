@@ -16,11 +16,15 @@
     });
 
     function authRedirect() {
-      if(!loginService.isLoggedIn() && $location.path() != '/signup' && $location.path() != '/signin') {
+
+      if($location.path() == "/404") {
+
+      }
+      else if(!loginService.isLoggedIn() && $location.path() != '/signup' && $location.path() != '/signin') {
         $location.path('/signin').replace();
         return;
       }
-      if(loginService.isLoggedIn() && ($location.path() == '/signup' || $location.path() == "/signin")) {
+      else if(loginService.isLoggedIn() && ($location.path() == '/signup' || $location.path() == "/signin")) {
         loginService.logout();
       }
     }

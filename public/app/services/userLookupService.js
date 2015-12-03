@@ -9,7 +9,8 @@
   }
 
   userLookupService.prototype.byEmail = function (email, callback) {
-    var userRef = this.firebaseRef.child('user')
+    var userRef = this.firebaseRef.child('users')
+      .orderByChild('email')
       .startAt(email)
       .endAt(email)
       .once('value', function successCallback(snapshot){

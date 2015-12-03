@@ -3,11 +3,13 @@
 
   angular.module('app').controller('homeController', homeController);
 
-  homeController.$inject = ['$scope', '$timeout', 'noteService'];
+  homeController.$inject = ['$scope', '$timeout', 'noteService', 'userLookupService'];
 
-  function homeController($scope, $timeout, noteService) {
+  function homeController($scope, $timeout, noteService, userLookupService) {
 
     var vm = this;
+
+    // Notes stuff
     vm.currentNote = {
       text: "",
       title: "",
@@ -18,6 +20,10 @@
     vm.saveNote = saveNote;
     vm.shareNote = shareNote;
     vm.deleteNote = deleteNote;
+
+    // Searching for email
+    vm.searchByEmail = searchByEmail;
+    vm.emailSearchInput = "";
 
     vm.codeMirrorOptions = {
       lineNumbers: true,
@@ -102,6 +108,18 @@
         $timeout(function(){
           vm.notes = notes;
         },0);
+      });
+    }
+
+    function searchByEmail() {
+      var email = vm.emailSearchInput;
+      var value = userLookupService.byEmail(email, function emailCallback(users, error){
+        if(error) {
+          console.error(error);
+          return;
+        }
+        console.debug("here's the users");
+        console.debug(users);
       });
     }
 
