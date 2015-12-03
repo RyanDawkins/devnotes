@@ -7,7 +7,13 @@ ul.notes > li.note {
   padding: 5px;
   border-radius: 5px;
   margin-top: 10px;
+  text-align: center;
 }
 ul.notes > li.note:hover {
   background-color: #ededed;
+}
+
+ul.notes > li.create-note > a {
+  margin-top: 10px;
+  width: 100%;
 }

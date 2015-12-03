@@ -9,7 +9,9 @@
 
       <ul class="list-unstyled notes">
         <li class="note" ng-repeat="note in vm.notes" ng-click="vm.startEditing(note)">{{note.title}}</li>
-        <li class="note" ng-click="vm.createNote()"><i class="fa fa-plus"></i> Create Note</li>
+        <li class="create-note" ng-click="vm.createNote()">
+          <a class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Create Note</a>
+        </li>
       </ul>
     </div>
 
