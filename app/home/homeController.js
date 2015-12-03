@@ -3,9 +3,9 @@
 
   angular.module('app').controller('homeController', homeController);
 
-  homeController.$inject = ['$scope', 'noteService'];
+  homeController.$inject = ['$scope', '$timeout', 'noteService'];
 
-  function homeController($scope, noteService) {
+  function homeController($scope, $timeout, noteService) {
 
     var vm = this;
     vm.currentNote = {
@@ -47,22 +47,62 @@
     }
 
     function createNote() {
-      vm.currentNote = {
-        text: "",
-        title: ""
-      }
+      $timeout(function(){
+        vm.currentNote = {
+          text: "",
+          title: ""
+        }
+      },0);
     }
 
     function saveNote() {
+      var self = this;
+      if(vm.currentNote.uid) {
 
+        // This forces it to happen async. This fixes a digest error...
+        $timeout(function(){
+          self.currentNote = noteService.updateNote(self.currentNote);
+        },0);
+      } else {
+
+        // This forces it to happen async. This fixes a digest error...
+        $timeout(function(){
+          self.currentNote = noteService.createNote(self.currentNote.title, self.currentNote.text);
+        },0);
+      }
+      noteService.getNotes(function getNotesCallback(notes, error){
+        if(error) {
+          console.error(error);
+          return;
+        }
+
+        // This forces it to happen async. This fixes a digest error...
+        $timeout(function(){
+          vm.notes = notes;
+        },0);
+      });
     }
 
     function shareNote() {
-      
+
     }
 
     function deleteNote() {
+      noteService.deleteNote(this.currentNote);
 
+      this.createNote();
+
+      noteService.getNotes(function getNotesCallback(notes, error){
+        if(error) {
+          console.error(error);
+          return;
+        }
+
+        // This forces it to happen async. This fixes a digest error...
+        $timeout(function(){
+          vm.notes = notes;
+        },0);
+      });
     }
 
   }
