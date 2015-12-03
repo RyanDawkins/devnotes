@@ -18,9 +18,12 @@
     function authRedirect() {
       if(!loginService.isLoggedIn() && $location.path() != '/signup' && $location.path() != '/signin') {
         $location.path('/signin').replace();
+        return;
+      }
+      if(loginService.isLoggedIn() && ($location.path() == '/signup' || $location.path() == "/signin")) {
+        loginService.logout();
       }
     }
-
   }
 
 })(window);

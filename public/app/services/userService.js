@@ -8,6 +8,11 @@
     this.firebaseRef = firebaseRef;
   }
 
+  userService.prototype.setEmail = function setEmail(email) {
+    this.email = email;
+    localStorage.setItem("email", this.email);
+  }
+
   userService.prototype.setName = function setName(name) {
     this.name = name;
     localStorage.setItem("name", this.name);
@@ -23,6 +28,11 @@
       this.name = undefined;
     }
     return this.name;
+  }
+
+  userService.prototype.removeUserVals = function() {
+    localStorage.removeItem("name");
+    localStorage.removeItem("email");
   }
 
   userService.prototype.loadUser = function loadUser(callback) {

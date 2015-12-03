@@ -84,7 +84,7 @@
     }
 
     function shareNote() {
-
+      $("#userLookupModal").modal("show");
     }
 
     function deleteNote() {
