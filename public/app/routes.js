@@ -21,6 +21,11 @@
         controller: 'signinController',
         controllerAs: 'vm'
       })
+      .when('/user/:user/note/:note',{
+        templateUrl: '/app/sharedNote/sharedNote.html',
+        controller: 'sharedNoteController',
+        controllerAs: 'vm'
+      })
       .when('/404', {
         templateUrl: '/app/notFound/notFound.html'
       })

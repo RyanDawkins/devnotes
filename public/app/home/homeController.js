@@ -12,7 +12,8 @@
     // Notes stuff
     vm.currentNote = {
       text: "",
-      title: "",
+      title: "Untitled Note",
+      newNote: true,
     };
     vm.notes = [];
     vm.startEditing = startEditing;
@@ -29,6 +30,8 @@
       lineNumbers: true,
       lineWrapping: true,
     };
+
+    $scope.$watch('vm.currentNote.text', onChangeText);
 
     init();
 
@@ -56,24 +59,24 @@
       $timeout(function(){
         vm.currentNote = {
           text: "",
-          title: ""
+          title: "Untitled Note",
+          newNote: true,
         }
       },0);
     }
 
     function saveNote() {
-      var self = this;
       if(vm.currentNote.uid) {
 
         // This forces it to happen async. This fixes a digest error...
         $timeout(function(){
-          self.currentNote = noteService.updateNote(self.currentNote);
+          vm.currentNote = noteService.updateNote(vm.currentNote);
         },0);
       } else {
 
         // This forces it to happen async. This fixes a digest error...
         $timeout(function(){
-          self.currentNote = noteService.createNote(self.currentNote.title, self.currentNote.text);
+          vm.currentNote = noteService.createNote(vm.currentNote.title, vm.currentNote.text);
         },0);
       }
       noteService.getNotes(function getNotesCallback(notes, error){
@@ -90,7 +93,14 @@
     }
 
     function shareNote() {
-      $("#userLookupModal").modal("show");
+      $('#linkModal').modal('show');
+
+      var user_uid = this.currentNote.user_uid;
+      var note_uid = this.currentNote.uid;
+
+      var link = location.host+"/#/"+"user/"+user_uid+"/note/"+note_uid;
+      vm.noteLink = link;
+
     }
 
     function deleteNote() {
@@ -121,6 +131,39 @@
         console.debug("here's the users");
         console.debug(users);
       });
+    }
+
+    var typingInterval = 2000;
+    var typingTimer;
+    var lastSaveTime = null;
+    var startedTyping = false;
+    function onChangeText(newVal, oldVal) {
+
+      // This prevents auto saving.
+      if(vm.currentNote.newNote) {
+        vm.currentNote.newNote = false;
+        return;
+      }
+
+      var currentTime = (new Date()).getTime();
+      if(lastSaveTime != null && currentTime - lastSaveTime > typingInterval) {
+        doneTypingSaveNote(currentTime);
+      } else if(lastSaveTime == null && oldVal == "") {
+        typingTimer = setTimeout(doneTypingSaveNote, typingInterval);
+      }
+    }
+
+    function doneTypingSaveNote(currentTime) {
+
+      clearTimeout(typingTimer);
+
+      if(currentTime) {
+        lastSaveTime = currentTime;
+      } else {
+        lastSaveTime = (new Date()).getTime();
+      }
+      saveNote();
+      typingTimer = setTimeout(saveNote, typingInterval);
     }
 
   }
