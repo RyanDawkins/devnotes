@@ -12,6 +12,8 @@
     vm.isLoggedIn = isLoggedIn;
     vm.getName = getName;
 
+    $rootScope.$on('$routeChangeStart', onRouteChange);
+
     function logout() {
       loginService.logout();
       $location.path('/signin').replace();
@@ -25,13 +27,15 @@
       return userService.getName();
     }
 
-    $rootScope.$on('$routeChangeStart', function(next, current) {
+    function onRoutechange(next, current) {
+
+      // This is here to ensure the name exists or doesn't depending upon status
       if(loginService.isLoggedIn()){
         userService.loadUser(function loadUserCallback(user, error){
           userService.setName(user.name);
         });
       }
-    });
+    }
 
   }
 

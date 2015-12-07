@@ -15,8 +15,7 @@
     var user_uid = $routeParams['user'];
     var note_uid = $routeParams["note"];
 
-    console.debug("got to sharedNote");
-
+    // This ensures no bogus urls can happen
     if(!user_uid || !note_uid) {
       $location.path('/404').replace();
     }
@@ -25,14 +24,11 @@
 
       if(error) {
         console.error(error);
+        $location.path('/404').replace();
         return;
       }
 
-      console.debug(user_uid);
-      console.debug(note_uid);
-      console.debug(note);
-
-
+      // Since this happens outside of scope..
       $scope.$apply(function applyingToScope(){
         vm.note = note;
       });

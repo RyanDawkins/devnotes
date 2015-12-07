@@ -14,6 +14,10 @@
 
     function signup(name, email, password, callback) {
 
+      // This signs up using the built in firebase auth, and then stores data
+      // about a user in the global object
+      // It expects a method that has a callback as the final param
+
       userService.setName(name);
 
       firebaseRef.createUser({
@@ -22,7 +26,7 @@
       }, function signupUserCallback(error, userData){
 
         if(error) {
-          console.error(error);
+          callback(null, error);
           return;
         }
 

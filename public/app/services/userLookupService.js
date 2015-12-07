@@ -9,6 +9,7 @@
   }
 
   userLookupService.prototype.byEmail = function (email, callback) {
+    // This allows you to lookup a user by their email.
     var userRef = this.firebaseRef.child('users')
       .orderByChild('email')
       .startAt(email)

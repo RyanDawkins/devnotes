@@ -22,6 +22,18 @@
 
         if(error) {
           console.error(error);
+
+          // Here we will display to the user the problem
+          switch (error.code) {
+            case "EMAIL_TAKEN":
+              toastr.error("The new user account cannot be created because the email is already in use.");
+              break;
+            case "INVALID_EMAIL":
+              toastr.error("The specified email is not a valid email.");
+              break;
+            default:
+              toastr.error("Error creating user:", error);
+          }
           return;
         }
 
