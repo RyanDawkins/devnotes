@@ -12,7 +12,7 @@
     vm.isLoggedIn = isLoggedIn;
     vm.getName = getName;
 
-    $rootScope.$on('$routeChangeStart', onRouteChange);
+    $rootScope.$on('$routeChangeStart', onRoutechange);
 
     function logout() {
       loginService.logout();
